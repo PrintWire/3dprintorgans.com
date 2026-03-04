@@ -159,39 +159,89 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* ========================================
-   3D PRINT NEWS FEED (RSS via rss2json)
+   BIOPRINTING NEWS FEED (RSS via rss2json)
    ======================================== */
-var METAL_NEWS_FALLBACKS = [
-  'images/01-titanium-turbine.png',
-  'images/04-lattice-cube-hands.png',
-  'images/10-dmls-machine-interior.png'
-];
-function loadMetalNewsFeed() {
-  var container = document.getElementById('news-feed');
-  if (!container) return;
-  var RSS_URL = 'https://3dprintingindustry.com/feed/';
-  var API = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(RSS_URL) + '&api_key=public&count=3';
-  container.innerHTML = '<p style="text-align:center;color:#888;">Loading news...</p>';
-  fetch(API)
-    .then(function(r){return r.json();})
-    .then(function(data){
-      if(!data.items||data.items.length===0) throw new Error('No items');
-      var filtered=data.items.filter(function(a){return a.title&&a.link;}).slice(0,3);
-      if(filtered.length===0){container.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#888;">Unable to load news at this time.</p>';return;}
-      container.innerHTML=filtered.map(function(article,idx){
-        var fallbackImg=METAL_NEWS_FALLBACKS[idx%METAL_NEWS_FALLBACKS.length];
-        var imgSrc=article.thumbnail||fallbackImg;
-        return['<div class="news-item">','<div class="news-image">',
-          '<img src="'+imgSrc+'" data-fallback="'+fallbackImg+'" alt="Industry News" loading="lazy" onerror="this.onerror=null;this.src=this.dataset.fallback">',
-          '</div>','<div class="news-content">','<div class="news-date">'+article.pubDate+'</div>',
-          '<h4>'+article.title+'</h4>','<p>'+article.description+'</p>',
-          '<a href="'+article.link+'" target="_blank" rel="noopener noreferrer" class="news-link">Read More \u2192</a>',
-          '</div>','</div>'].join('');
-      }).join('');
-    })
-    .catch(function(){container.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#888;">Unable to load news at this time.</p>';});
-}
-document.addEventListener('DOMContentLoaded', loadMetalNewsFeed);
+(function() {
+  var feeds = [
+    { url: 'https://www.labiotech.eu/tag/bioprinting/feed/', name: 'Labiotech' },
+    { url: 'https://3dprint.com/category/health-3d-printing/feed/', name: '3DPrint.com' },
+    { url: 'https://3dprintingindustry.com/feed/', name: '3D Printing Industry' },
+    { url: 'https://www.fiercebiotech.com/rss/xml', name: 'FierceBiotech' }
+  ];
+  var rss2jsonBase = 'https://api.rss2json.com/v1/api.json?rss_url=';
+  var allArticles = [];
+  var feedsLoaded = 0;
+  var feedsTotal = feeds.length;
+  var rendered = false;
+
+  function renderNews() {
+    if (rendered) return;
+    rendered = true;
+    var container = document.getElementById('news-feed');
+    if (!container) return;
+    var sorted = allArticles.sort(function(a, b) {
+      return new Date(b.pubDate) - new Date(a.pubDate);
+    }).slice(0, 3);
+    if (sorted.length === 0) {
+      container.innerHTML = '<div class="news-error"><p>Unable to load news at this time.</p><a href="https://www.labiotech.eu/tag/bioprinting/" target="_blank" rel="noopener" class="btn btn-outline">Visit Labiotech</a></div>';
+      return;
+    }
+    container.innerHTML = '<div class="news-grid">' + sorted.map(function(article) {
+      var imgHtml = article.thumbnail
+        ? '<img src="' + article.thumbnail + '" alt="' + article.source + ' news" loading="lazy" onerror="this.style.display='none';this.nextSibling.style.display='block'">' +
+          '<span class="news-placeholder" style="display:none">&#129516;</span>'
+        : '<span class="news-placeholder">&#129516;</span>';
+      var desc = article.description ? article.description.replace(/<[^>]+>/g, '').substring(0, 120) + '…' : '';
+      var date = article.pubDate ? new Date(article.pubDate).toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'}) : '';
+      return '<div class="news-card">' +
+        '<div class="news-card-image">' + imgHtml + '</div>' +
+        '<div class="news-card-body">' +
+          '<div class="news-card-source">' + article.source + '</div>' +
+          '<h3>' + article.title + '</h3>' +
+          (desc ? '<p>' + desc + '</p>' : '') +
+          '<div class="news-card-date">' + date + '</div>' +
+          '<a href="' + article.link + '" target="_blank" rel="noopener noreferrer">Read More →</a>' +
+        '</div></div>';
+    }).join('') + '</div>';
+  }
+
+  var globalTimeout = setTimeout(renderNews, 9000);
+
+  feeds.forEach(function(feed) {
+    var feedTimeout = setTimeout(function() {
+      feedsLoaded++;
+      if (feedsLoaded === feedsTotal) { clearTimeout(globalTimeout); renderNews(); }
+    }, 7000);
+    fetch(rss2jsonBase + encodeURIComponent(feed.url) + '&count=4')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        clearTimeout(feedTimeout);
+        if (data.items) {
+          data.items.forEach(function(item) {
+            if (item.title && item.link) {
+              allArticles.push({ title: item.title, link: item.link,
+                thumbnail: item.thumbnail || '', description: item.description || '',
+                pubDate: item.pubDate || '', source: feed.name });
+            }
+          });
+        }
+        feedsLoaded++;
+        if (feedsLoaded === feedsTotal) { clearTimeout(globalTimeout); renderNews(); }
+      })
+      .catch(function() {
+        clearTimeout(feedTimeout);
+        feedsLoaded++;
+        if (feedsLoaded === feedsTotal) { clearTimeout(globalTimeout); renderNews(); }
+      });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var container = document.getElementById('news-feed');
+    if (container && !container.innerHTML.trim()) {
+      container.innerHTML = '<p class="news-loading">Loading latest bioprinting news…</p>';
+    }
+  });
+})();
 
 /* ========================================
    WEB3FORMS CONTACT FORM
