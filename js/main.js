@@ -165,6 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var eutils = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/';
   var query = 'bioprinting+tissue+engineering';
   var rendered = false;
+  var fallbackImgs = ["images/04_vascularized_heart.png", "images/10_organ_array.png", "images/12_kidney_construct.png"];
 
   function renderNews(articles) {
     if (rendered) return;
@@ -175,13 +176,13 @@ document.addEventListener('DOMContentLoaded', function() {
       container.innerHTML = '<div class="news-error"><p>Unable to load research at this time. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=bioprinting" target="_blank" rel="noopener">Browse PubMed</a></p></div>';
       return;
     }
-    container.innerHTML = '<div class="news-grid">' + articles.slice(0, 3).map(function(a) {
+    container.innerHTML = '<div class="news-grid">' + articles.slice(0, 3).map(function(a, idx) {
       var authors = a.authors && a.authors.length
         ? a.authors.slice(0, 2).map(function(x) { return x.name; }).join(', ') + (a.authors.length > 2 ? ' et al.' : '')
         : '';
       var desc = (authors ? authors + '. ' : '') + (a.source ? a.source + '.' : '');
       return '<div class="news-card">' +
-        '<div class="news-card-image"><span class="news-placeholder">&#129516;</span></div>' +
+        '<div class="news-card-image"><img src="' + fallbackImgs[idx % fallbackImgs.length] + '" alt="bioprinting research" loading="lazy"></div>' +
         '<div class="news-card-body">' +
           '<div class="news-card-source">PubMed' + (a.source ? ' — ' + a.source : '') + '</div>' +
           '<h3>' + a.title + '</h3>' +
