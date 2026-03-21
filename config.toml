@@ -1,0 +1,197 @@
+baseURL = "https://3dprintorgans.com/"
+languageCode = "en-us"
+title = "3D Print Organs"
+theme = "printwire"
+
+[params]
+tagline       = "Organ bioprinting and organoid engineering — advancing transplantation, pharmaceutical testing, and personalised medicine."
+description   = "3D Print Organs covers the frontier of whole organ bioprinting and organoid engineering — from liver-on-chip to kidney organoids and the long-term goal of transplantable organs."
+keywords      = "organ bioprinting, organoids, liver bioprinting, kidney organoid, transplant organ, organ-on-chip, decellularised scaffold"
+logoEmoji     = "🫀"
+contactEmail  = "maxdavisgroup@gmail.com"
+footerServicesLabel = "Services"
+
+colorPrimary      = "#0e7490"
+colorPrimaryDark  = "#155e75"
+colorPrimaryLight = "#22a3bf"
+colorBgDark       = "#06080f"
+colorBgSection    = "#08101a"
+colorBgCard       = "#0d1520"
+colorBgCardHover  = "#111d2b"
+colorBorder       = "rgba(14,116,144,0.22)"
+colorBorderLight  = "rgba(14,116,144,0.10)"
+
+fontPrimary   = "Playfair+Display"
+fontSecondary = "Source+Sans+3"
+
+newsFallbackImages = [
+  "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1920&q=80",
+  "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1920&q=80",
+]
+
+heroEyebrow  = "Organ Bioprinting"
+heroTitle    = "3D Print <em>Organs</em>"
+heroSubtitle = "Organ bioprinting and organoid engineering — advancing transplantation, pharmaceutical testing, and personalised medicine."
+heroCta1Text = "Explore Services"
+heroCta1URL  = "/services/"
+heroCta2Text = "Get a Quote"
+heroCta2URL  = "/contact/"
+heroImage    = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1920&q=80"
+
+overviewLabel   = "Organ Engineering"
+overviewTitle   = "From Organoids to Organs"
+overviewText    = "Today: perfusable liver constructs and kidney organoids for drug testing. Tomorrow: transplantable organs that eliminate donor waiting lists."
+overviewBtnText = "View Services"
+overviewBtnURL  = "/services/"
+
+applicationsLabel = "Applications"
+applicationsTitle = "Industries We Serve"
+servicesLabel    = "What We Do"
+servicesTitle    = "3D Print Organs Services"
+servicesSubtitle = "Organ bioprinting and organoid engineering — advancing transplantation, pharmaceutical testing, and personalised medicine."
+clusterLabel = "PrintWire Network"
+clusterTitle = "Related 3D Printing Resources"
+newsletterTitle = "Industry Updates to Your Inbox"
+newsletterText  = "Research breakthroughs and industry news — delivered monthly."
+ctaTitle   = "Start Your Project"
+ctaText    = "Organ bioprinting and organoid engineering — advancing transplantation, pharmaceutical testing, and personalised medicine."
+ctaBtnText = "Get in Touch"
+ctaBtnURL  = "/contact/"
+
+[[params.stats]]
+count  = 100
+suffix = "K+"
+label  = "Annual Transplant Need (US)"
+
+[[params.stats]]
+count  = 4
+suffix = "B+"
+label  = "Market by 2030 (USD)"
+
+[[params.stats]]
+count  = 85
+suffix = "%+"
+label  = "Organoid Cell Viability"
+
+[[params.stats]]
+count  = 30
+suffix = "%"
+label  = "Industry CAGR"
+
+
+[[params.applications]]
+title       = "Liver Models & Drug Testing"
+description = "Perfusable hepatocyte constructs for ADME, toxicology, and fatty liver disease research."
+image       = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1920&q=80"
+
+[[params.applications]]
+title       = "Kidney Organoids"
+description = "iPSC-derived kidney organoids for renal disease modelling and nephrotoxicity screening."
+image       = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1920&q=80"
+
+[[params.applications]]
+title       = "Lung & Airway Constructs"
+description = "Airway epithelial models for respiratory drug delivery and COVID-19 research."
+image       = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1920&q=80"
+
+[[params.applications]]
+title       = "Heart & Cardiac Research"
+description = "Vascularised cardiac constructs and heart-on-chip for cardiovascular drug development."
+image       = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1920&q=80"
+
+
+[[params.servicesPreview]]
+icon        = "🫀"
+title       = "Liver Constructs & Models"
+description = "Primary hepatocyte or HepG2-laden alginate/GelMA constructs with bile canaliculi — validated by albumin secretion."
+
+[[params.servicesPreview]]
+icon        = "🔬"
+title       = "Kidney Organoid Engineering"
+description = "iPSC differentiation to kidney organoids with proximal tubule, podocyte, and endothelial compartments."
+
+[[params.servicesPreview]]
+icon        = "🧬"
+title       = "Decellularised Scaffolds"
+description = "Whole-organ decellularisation to produce natural ECM scaffolds for recellularisation studies."
+
+[[params.servicesPreview]]
+icon        = "⬡"
+title       = "Organ-on-Chip Development"
+description = "Microfluidic multi-organ systems for pharmacokinetic modelling and systemic drug response studies."
+
+
+[[params.services]]
+name        = "Liver Constructs & Models"
+description = "Primary hepatocyte or HepG2-laden alginate/GelMA constructs with bile canaliculi — validated by albumin secretion."
+icon        = "🫀"
+image       = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80"
+
+[[params.services]]
+name        = "Kidney Organoid Engineering"
+description = "iPSC differentiation to kidney organoids with proximal tubule, podocyte, and endothelial compartments."
+icon        = "🔬"
+image       = "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80"
+
+[[params.services]]
+name        = "Decellularised Scaffolds"
+description = "Whole-organ decellularisation to produce natural ECM scaffolds for recellularisation studies."
+icon        = "🧬"
+image       = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80"
+
+[[params.services]]
+name        = "Organ-on-Chip Development"
+description = "Microfluidic multi-organ systems for pharmacokinetic modelling and systemic drug response studies."
+icon        = "⬡"
+image       = "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80"
+
+
+[[params.clusterLinks]]
+name        = "3dprinttissue.com"
+url         = "https://3dprinttissue.com"
+description = "Bioprinting & tissue engineering"
+
+[[params.clusterLinks]]
+name        = "dmls3d.com"
+url         = "https://dmls3d.com"
+description = "Metal 3D printing"
+
+[[params.clusterLinks]]
+name        = "3dprintceramic.com"
+url         = "https://3dprintceramic.com"
+description = "Ceramic additive manufacturing"
+
+[[params.clusterLinks]]
+name        = "3dprintfood.com"
+url         = "https://3dprintfood.com"
+description = "Food bioprinting"
+
+[[menu.main]]
+name   = "Home"
+url    = "/"
+weight = 1
+
+[[menu.main]]
+name   = "About"
+url    = "/about/"
+weight = 2
+
+[[menu.main]]
+name   = "Articles"
+url    = "/articles/"
+weight = 3
+
+[[menu.main]]
+name   = "Services"
+url    = "/services/"
+weight = 4
+
+[[menu.main]]
+name   = "Contact"
+url    = "/contact/"
+weight = 5
+
+[[menu.main]]
+name   = "Advertise"
+url    = "/advertise/"
+weight = 6
