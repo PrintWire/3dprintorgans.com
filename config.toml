@@ -1,9 +1,18 @@
 baseURL = "https://3dprintorgans.com/"
 languageCode = "en-us"
 title = "3D Print Organs"
-theme = "printwire"
+
+[outputs]
+  home = ["HTML", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [params]
+siteName      = "3D Print Organs"
+logoHtml      = '3D&nbsp;PRINT&nbsp;<span class="ed-logo-accent">ORGANS</span>'
 tagline       = "Organ bioprinting and organoid engineering — advancing transplantation, pharmaceutical testing, and personalised medicine."
 description   = "3D Print Organs covers the frontier of whole organ bioprinting and organoid engineering — from liver-on-chip to kidney organoids and the long-term goal of transplantable organs."
 keywords      = "organ bioprinting, organoids, liver bioprinting, kidney organoid, transplant organ, organ-on-chip, decellularised scaffold"
