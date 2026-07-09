@@ -11,6 +11,7 @@ title = "3D Print Organs"
       unsafe = true
 
 [params]
+ogImage       = "/images/04_vascularized_heart.png"
 siteName      = "3D Print Organs"
 logoHtml      = '3D&nbsp;PRINT&nbsp;<span class="ed-logo-accent">ORGANS</span>'
 tagline       = "Organ bioprinting and organoid engineering — advancing transplantation, pharmaceutical testing, and personalised medicine."
