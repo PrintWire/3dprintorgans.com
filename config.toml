@@ -15,7 +15,7 @@ ogImage       = "/images/04_vascularized_heart.png"
 siteName      = "3D Print Organs"
 logoHtml      = '3D&nbsp;PRINT&nbsp;<span class="ed-logo-accent">ORGANS</span>'
 tagline       = "Organ bioprinting and organoid engineering — advancing transplantation, pharmaceutical testing, and personalised medicine."
-description   = "3D Print Organs covers the frontier of whole organ bioprinting and organoid engineering — from liver-on-chip to kidney organoids and the long-term goal of transplantable organs."
+description   = "3D Print Organs is a PrintWire network site about organ bioprinting. PrintWire passes quote requests to specialised manufacturers and returns pricing. PrintWire does not manufacture parts itself."
 keywords      = "organ bioprinting, organoids, liver bioprinting, kidney organoid, transplant organ, organ-on-chip, decellularised scaffold"
 logoEmoji     = "🫀"
 contactEmail  = "maxdavisgroup@gmail.com"
